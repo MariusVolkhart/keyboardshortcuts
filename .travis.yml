@@ -1,0 +1,38 @@
+language: android
+
+jdk:
+ - oraclejdk8
+
+android:
+  components:
+    - tools # to get the new `repository-11.xml`
+    - tools # to install Android SDK tools 25.1.x (x = 6 right now)
+    - platform-tools
+    - build-tools-25.0.2
+    - android-25
+    - extra-android-m2repository
+    - extra-google-m2repository
+
+script:
+  - ./gradlew clean check
+
+after_success:
+  - .buildscript/deploy_snapshot.sh
+
+env:
+  global:
+    - secure: "YVmJmElNJF4hokJQ0FZo1UW4Uy98uwB3luH1pRcq4PyAolKs9Kgr67VHhijI3cWZaVhFi00OLwIbYdCBAOnJ2+eq9JgQQ00TYSrommj9UXkhm5NfFI1w73ZGvD94Sv9z3klqMZI1EcP0GDrACw2DS7RTAFgklZHnT2P3yx7eDHfqJM5qcW4l72YQQbyDSKAt1R8ehqsKLnULrku8tagyOIO80Sg8cdE/ePHB7Vp0/JNjdvkapvn/pCkMRhCs/iOPmQWDCvY4NxLeB0REVq/6X8DkNIOQJBn2w9KUoepubP8A/Rv9pChlC7YbK6uuW73PscxuHUcqXWlzC1JlsmE1ygcFMcdH39CrQSbZ1Px12SuW8/pV5UipwjUzpmLn1a7tcG9adhqHvS/xmfOCZUwGPuFcLE65bZvJ/0UmYGuXun0RkHKLPcS0oRmk42TbTFwXF1/QoLJCLDydLYsBALhf2Z6hOXAT2B3dOqA0UqiwFp83mbN5lmODllsAEYr+itzW2WZ4uxDcAQA/F0hqJRdp1aHm5OfUwR9kZ+2e/OVcNsKHCtkb1N++C1lPwExGGSkea3Fb9Lh29ZpqiO0xtrpPg1ByYRY8w+zlw8k5n+ChyuWJtpBvDXBsqcV6tjmiqGs/FPlQDWO7nNOmpr5SjM2nvVL3w3lsLsHT/X3+ofKJGos="
+    - secure: "VnJi5Q4KKeAStDS3X+Dbl8pwFXiOQzn+7Cgd5wedHZibyA+9cr5wuVvp5AbT4ralSUXi3eu8U6/mod65+GoGwmHYt7V+eNtv/IRHandmM/ytf/drlxF4iCP/xU5gbH7vfK+znHbYuKLV6C2v1k2ob8uJH0aKF6Dqc6VmQie/WENSf1gcwLuUiGFAg9FvIXitI7adw5vzBGfYVC/W9HNAHVzX0wnFHpweqyt0b3ymqcQKA2ji26NTs/Ms9fnPHTe3YrVg1LkqZS6W1LMlvMaaBmU3UBVWaroNYU+bTWTel4Dj59MgmrzJLrAib/XuAPt0d3QZxEokWr+GJidPL+OTHqI2jzN4Zt7/STyz7POr9mbGDjXGRLBKGcQ0fpr8bURaLTFd9Y+1q/sn3+huKfzPNjrwwuUavzazna3ew/orqbPA9zbA5DEOOk+66wI5Vz7vPGuf/ddQMcdvwF9gBOFAtD60VNQUHpXBfXlGPvzL9oKWoTp1DTh92FeDmejVwBUchMnD8fAbaPZ2yPx97+T2chT4dG9ShXwCMrYLVGdUmnIRXNW8Y/kCuUEcfTuBaso62x+CyZ0nNjMvaOf8ZyawXgGbaNgPmlgT4HNIdxu+jzXi3yI5csfW8s/g09CUDutxhJIi+GYUCbUVywKWz404ibYvdtQ/VrKtsdOgq/qvF8A="
+
+branches:
+  except:
+    - gh-pages
+
+notifications:
+  email: false
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.gradle

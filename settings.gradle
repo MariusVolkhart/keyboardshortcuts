@@ -1,0 +1,4 @@
+include ':sample'
+include ':keyboardshortcuts'
+
+rootProject.name = 'keyboardshortcuts-parent'
